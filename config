@@ -1,0 +1,257 @@
+# i3 config file (v4)
+#
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod Mod4
+
+# font for window titles. ISO 10646 = Unicode
+font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Workspace name
+set $w01 1: term
+set $w02 2: web
+set $w03 3: git
+set $w04 4
+set $w05 5
+set $w06 6
+set $w07 7
+set $w08 8
+set $w09 9
+set $w10 10
+
+# Apps sorted by workspace
+assign [class="Firefox"] → $w02
+
+# Floating windows
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="About"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [class="Xfce4-notifyd"] floating enable
+for_window [class="Nagstamon" instance="nagstamon"] floating enable
+for_window [class="^Pidgin$" instance="^Pidgin$"] floating enable
+
+# Windows size
+for_window [class="^Pidgin$" window_role="^conversation$"] resize grow width 0 px or 30 ppt
+
+# Windows border
+for_window [class="Nagstamon" instance="nagstamon"] border 1pixel
+for_window [class="Xfce4-notifyd"] border none
+
+# start a terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec urxvt
+
+# Navigateur
+bindsym $mod+b exec uzbl
+
+# Verrouillage
+#bindsym $mod+x exec i3lock
+bindsym $mod+x exec i3lock -d -i ~/Images/wp/i3lock_maurice-moss-the-it-crowd.png
+
+# Son
+bindsym XF86AudioRaiseVolume exec amixer -c 0 set Master 2+ unmute
+bindsym XF86AudioLowerVolume exec amixer -c 0 set Master 2-
+bindsym XF86AudioMute exec amixer -c 0 set Master mute
+
+# Luminosité
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+
+# Écran
+bindsym XF86Display exec ~/bin/switchdisplay.sh
+
+# Annuaire
+bindsym $mod+a exec ~/bin/annuaire.sh
+
+# kill focused window
+bindsym $mod+Shift+A kill
+
+# start dmenu (a program launcher)
+bindsym $mod+d exec dmenu_run
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+m focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+J move left
+bindsym $mod+Shift+K move down
+bindsym $mod+Shift+L move up
+bindsym $mod+Shift+M move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+
+# change container layout (stacked, tabbed, default)
+bindsym $mod+s layout stacking
+bindsym $mod+z layout tabbed
+bindsym $mod+e layout default
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+q focus parent
+
+# focus the child container
+#bindcode $mod+d focus child
+
+# switch to workspace ($mod+[&é"'(-è_çà]) ($mod+["«»()@+-/*])
+bind $mod+10 workspace $w01
+bind $mod+11 workspace $w02
+bind $mod+12 workspace $w02
+bind $mod+13 workspace $w04
+bind $mod+14 workspace $w05
+bind $mod+15 workspace $w06
+bind $mod+16 workspace $w07
+bind $mod+17 workspace $w08
+bind $mod+18 workspace $w09
+bind $mod+19 workspace $w10
+# azerty
+#bindsym $mod+ampersand workspace $w01
+#bindsym $mod+eacute workspace $w02
+#bindsym $mod+quotedbl workspace $w03
+#bindsym $mod+apostrophe workspace $w04
+#bindsym $mod+parenleft workspace $w05
+#bindsym $mod+minus workspace $w06
+#bindsym $mod+egrave workspace $w07
+#bindsym $mod+underscore workspace $w08
+#bindsym $mod+ccedilla workspace $w09
+#bindsym $mod+agrave workspace $w10
+# bépo
+#bindsym $mod+quotedbl workspace $w01
+#bindsym $mod+guillemotleft workspace $w02
+#bindsym $mod+guillemotright workspace $w03
+#bindsym $mod+parenleft workspace $w04
+#bindsym $mod+parenright workspace $w05
+#bindsym $mod+at workspace $w06
+#bindsym $mod+plus workspace $w07
+#bindsym $mod+minus workspace $w08
+#bindsym $mod+slash workspace $w09
+#bindsym $mod+asterisk workspace $w10
+# keys
+
+# move focused container to workspace ($mod+Shift+[&é"'(-è_çà]) ($mod+Shift+["«»()@+-/*])
+bind $mod+Shift+10 move container to workspace $w01
+bind $mod+Shift+11 move container to workspace $w02
+bind $mod+Shift+12 move container to workspace $w03
+bind $mod+Shift+13 move container to workspace $w04
+bind $mod+Shift+14 move container to workspace $w05
+bind $mod+Shift+15 move container to workspace $w06
+bind $mod+Shift+16 move container to workspace $w07
+bind $mod+Shift+17 move container to workspace $w08
+bind $mod+Shift+18 move container to workspace $w09
+bind $mod+Shift+19 move container to workspace $w10
+#bindsym $mod+Shift+1 move container to workspace $w01
+#bindsym $mod+Shift+2 move container to workspace $w02
+#bindsym $mod+Shift+3 move container to workspace $w03
+#bindsym $mod+Shift+4 move container to workspace $w04
+#bindsym $mod+Shift+5 move container to workspace $w05
+#bindsym $mod+Shift+6 move container to workspace $w06
+#bindsym $mod+Shift+7 move container to workspace $w07
+#bindsym $mod+Shift+8 move container to workspace $w08
+#bindsym $mod+Shift+9 move container to workspace $w09
+#bindsym $mod+Shift+0 move container to workspace $w10
+
+# Select adjacent output (screen) ($mod+[n,;:]) ($mod+['qgh])
+bind $mod+57 output left
+bind $mod+58 output down
+bind $mod+59 output up
+bind $mod+60 output right
+# Move workspace to adjacent output (screen) ($mod+Shift+[n,;:]) ($mod+Shift+['qgh])
+bind $mod+Shift+57 move workspace to output left
+bind $mod+Shift+58 move workspace to output down
+bind $mod+Shift+59 move workspace to output up
+bind $mod+Shift+60 move workspace to output right
+
+# scratchpad
+bindsym $mod+Shift+i move scratchpad
+bindsym $mod+i scratchpad show
+
+# Rename workspace
+#i3-msg 'rename workspace "3" to "3:img"' 
+#i3-msg 'workspace number 7'
+
+# reload the configuration file
+bindsym $mod+Shift+C reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+R restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+E exit
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym m resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym 113 resize shrink width 10 px or 10 ppt
+        bindsym 116 resize grow height 10 px or 10 ppt
+        bindsym 111 resize shrink height 10 px or 10 ppt
+        bindsym 114 resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+  status_command i3status -c .i3/i3status.conf
+  position bottom
+  #font -misc-fixed-medium-r-normal--8-120-75-75-C-70-iso10646-1
+  #font pango:DejaVu Sans Mono, Ionicons, FontAwesome 8
+  colors {
+    background #000000
+    statusline #33aaff
+    focused_workspace #11aaff #005500
+    active_workspace #11aaff #005500
+    urgent_workspace #ffffff #990000
+  }
+}
+
+focus_follows_mouse no
+
+# Startup
+exec urxvt
+#exec --no-startup-id i3-msg 'workspace 3; exec firefox; workspace 1'
+#exec sleep 5; urxvt -name mail -e bash -c "mutt"
+#exec eval $(gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
